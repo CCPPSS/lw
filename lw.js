@@ -90,6 +90,6 @@ exports.createObject = function() {
 }
 
 if (require.main === module) {
-    console.log('lw.js')
+    console.log('lw.js1')
 
 }
