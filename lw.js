@@ -15,8 +15,6 @@ class object_lw {
         this.state = 'noinit'
         this.errMsg_init = 'dll对象还未初始化，请使用[对象.init(dll路径)]方法进行初始化.'
         this.init(dll_path)
-
-
     }
 
     /**
@@ -57,8 +55,8 @@ class object_lw {
                 'getOS': ['string', []],
                 'random': ['int', ['int', 'int']],
             })
-            this.isinit = true
-            console.log(`初始化dll成功,版本:${this.dll.ver()}`)
+            this.isinit = this.dll.random(1, 999)
+            console.log(`初始化dll成功,版本:${this.dll.ver()},当前id:${this.isinit}`)
         } catch (err) {
             console.log('导入模块中发生错误')
             console.log('错误信息：' + err)
