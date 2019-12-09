@@ -1,3 +1,3 @@
 git add .
-git commit -m "auto save %DATE%"
+git commit -m "fast save %DATE%"
 git push
