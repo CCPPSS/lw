@@ -14,12 +14,9 @@ class object_lw {
         this.dll = false
         this.state = 'noinit'
         this.errMsg_init = 'dll对象还未初始化，请使用[对象.init(dll路径)]方法进行初始化.'
+        this.init(dll_path)
 
-        if (dll_path !== 'undefined' && fs.existsSync(dll_path)) {
-            this.init(dll_path)
-        } else {
-            console.log('没有找到dll文件，请确认路径是否正确:[' + dll_path + '].')
-        }
+
     }
 
     /**
@@ -89,12 +86,19 @@ class object_lw {
 if (require.main === module) {
     console.log('lw.js1')
     const lw = new object_lw('./test11.dll')
-    for (var i = 20 - 1; i >= 0; i--) {
+    for (var i = 3 - 1; i >= 0; i--) {
         console.log(lw.random(90, 500))
         lw.delay(1000)
     }
 }
 
 module.exports = dll_path => {
-    return new object_lw(dll_path)
+    if (fs.existsSync(dll_path)) {
+        return new object_lw(dll_path)
+    } else if (fs.existsSync('./test11.dll')) {
+        return new object_lw('./test11.dll')
+    } else {
+        console.log('没有找到dll文件，请确认路径是否正确:[' + dll_path + '].')
+        throw '无效的dll路径'
+    }
 }
