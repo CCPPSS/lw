@@ -1,0 +1,15 @@
+{
+  "name": "lw",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lw.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ffi-napi": "^2.4.5",
+    "ref-napi": "^1.4.2"
+  }
+}
