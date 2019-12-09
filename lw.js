@@ -76,18 +76,23 @@ class object_lw {
     }
 
     random(n, m) {
-        return this.dll.random(n, m)
+        n = Number(n)
+        m = Number(m)
+        return m > n ? this.dll.random(n, m) : false
     }
 
+    test() {
+        for (var i = 3 - 1; i >= 0; i--) {
+            console.log(`[${this.isinit}]:${this.random(90, 500)}`)
+            this.dll.delay(1000)
+        }
+    }
 }
 
 if (require.main === module) {
     console.log('lw.js1')
     const lw = new object_lw('./test11.dll')
-    for (var i = 3 - 1; i >= 0; i--) {
-        console.log(lw.random(90, 500))
-        lw.delay(1000)
-    }
+    lw.test()
 }
 
 module.exports = dll_path => {
