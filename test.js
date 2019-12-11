@@ -1,5 +1,4 @@
 'use strict'
 
 const lw = require('./lw')
-const cb = lw()
-const cc = lw()
+let l1 = lw('./test112222.dll')

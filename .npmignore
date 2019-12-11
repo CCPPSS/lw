@@ -1,3 +1,5 @@
 *.dll
 *.bat
 test.js
+*.bat
+.gitignore

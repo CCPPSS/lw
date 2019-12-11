@@ -1,6 +1,6 @@
 {
-  "name": "lw",
-  "version": "1.0.0",
+  "name": "clw",
+  "version": "1.0.1",
   "description": "",
   "main": "lw.js",
   "scripts": {
