@@ -24,10 +24,9 @@ class object_lw {
    * @param      {string}  dll_path  dll的路径
    */
   init(dll_path) {
-    console.log(`识别${dll_path}成功，开始初始化dll。`)
     try {
       this.dll = ffi.Library(dll_path, {
-        'ver': ['double', []],
+        'ver': ['string', []],
         'enumWindow': ['string', ['string', 'string']],
         'findWindow': ['int', ['string', 'string']],
         'findSonWindow': ['int', ['int', 'string', 'string']],
@@ -49,22 +48,33 @@ class object_lw {
         'getPath': ['string', []],
         'capture': ['int', ['int', 'int', 'int', 'int', 'string']],
         'delay': ['int', ['int']],
+        'rdelay': ['int', ['int', 'int']],
         'leftClick': ['void', []],
         'test': ['int', []],
         'findPic': ['string', ['int', 'int', 'int', 'int', 'string', 'string', 'int', 'int', 'int', 'int', 'int', 'int', 'int']],
         'findColor': ['string', ['int', 'int', 'int', 'int', 'string', 'int', 'int', 'int', 'int', 'int', 'int']],
         'getOS': ['string', []],
         'random': ['int', ['int', 'int']],
+        'toGBK': ['string', ['string']],
       })
-      this.isinit = this.dll.random(1, 999)
+      if (this.dll.ver() === '1.0.1') {
+        this.isinit = this.dll.random(1, 999)
+        console.log(`识别${dll_path}成功，开始初始化dll。`)
+      } else {
+        throw '当前dll不是最新版'
+      }
     } catch (err) {
       console.log('导入模块中发生错误')
       console.log('错误信息：' + err)
     }
+  }
 
+  enumWindow(search_title, search_class) {
+    return this.dll.enumWindow(search_title, search_class)
   }
 
   ver() {
+    console.log(this.dll.ver())
     return this.dll.ver()
   }
 
@@ -82,11 +92,8 @@ class object_lw {
     return m > n ? this.dll.random(n, m) : false
   }
 
-  test() {
-    for (var i = 3 - 1; i >= 0; i--) {
-      console.log(`[${this.isinit}]:${this.random(90, 500)}`)
-      this.dll.delay(1000)
-    }
+  test(str) {
+    return (str)
   }
 }
 
@@ -94,6 +101,7 @@ if (require.main === module) {
   console.log('lw.js1')
   const lw = new object_lw('./test11.dll')
   lw.test()
+  lw.ver()
 }
 
 module.exports = dll_path => {
