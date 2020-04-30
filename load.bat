@@ -1,1 +1,2 @@
-git pull load master
+git pull save master
+pause
